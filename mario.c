@@ -15,27 +15,27 @@ int main(void)
 
   for (int i = 0; i < height; i++)
   {
-    for (int z = 1; z <= spaces; z++)
+    for (int z = 1; z <= spaces; z++) // Adding white spaces before dashes
     {
-      printf(" ");
+        printf(" ");
     }
 
-    for (int j = 1; j <= width; j++)
+    for (int j = 1; j <= width; j++) // Adding first set of dashes
     {
-      printf("#");
+        printf("#");
     }
     
-    for (int s = 0; s < 2; s++)
+    for (int s = 0; s < 2; s++) // Adding white spaces between the two sets of dashes
     {
-    printf(" ");
+        printf(" ");
     }
     
-    for (int h = 1; h <= width; h++)
+    for (int h = 1; h <= width; h++) // Adding the second set of dashes
     {
-      printf("#");
+        printf("#");
     }
 
-    printf("\n");
+    printf("\n"); // To the new line
     width++;
     spaces--;
   }
