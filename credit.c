@@ -46,7 +46,7 @@ int main(void) {
     if (luhn_num % 10 != 0) {
         printf("%s\n", "INVALID");
     } else if ((luhn_num % 10 == 0) && (i == 15) && (start_numbers == 34 || start_numbers == 37)) {
-        printf("%s\n", "AMERICAN EXPRESS");
+        printf("%s\n", "AMEX");
     } else if ((luhn_num % 10 == 0) && (i == 16) && (start_numbers >= 51) && (start_numbers <= 55)) {
         printf("%s\n", "MASTERCARD");
     } else if ((luhn_num % 10 == 0) && (i == 16 || i == 13) && (start_numbers / 10 == 4)) {
