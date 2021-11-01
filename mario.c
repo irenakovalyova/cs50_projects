@@ -17,16 +17,19 @@ int main(void)
   {
     for (int z = 1; z <= spaces; z++)
     {
-      printf("  ");
+      printf(" ");
     }
 
     for (int j = 1; j <= width; j++)
     {
       printf("#");
     }
-
+    
+    for (int s = 0; s < 2; s++)
+    {
     printf(" ");
-
+    }
+    
     for (int h = 1; h <= width; h++)
     {
       printf("#");
