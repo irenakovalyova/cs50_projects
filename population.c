@@ -19,7 +19,7 @@ int main(void)
 
   int n_years = 0;
 
-  for (n_years = 0; start_size <= end_size; n_years++)
+  for (n_years = 0; start_size < end_size; n_years++)
   {
       start_size = start_size + (start_size / 3) - (start_size / 4);
   }
