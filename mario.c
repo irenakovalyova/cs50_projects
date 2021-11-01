@@ -10,7 +10,6 @@ int main(void)
   }
   while (height < 1 || height > 8);
 
-  printf("Height: %d\n", height);
   int width = 1;
   int spaces = height - width;
 
