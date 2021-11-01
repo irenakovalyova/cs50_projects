@@ -23,6 +23,5 @@ int main(void)
   {
       start_size = start_size + (start_size / 3) - (start_size / 4);
   }
-    n_years--;
     printf("Years: %i\n", n_years);
 }
