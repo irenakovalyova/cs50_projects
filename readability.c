@@ -18,7 +18,6 @@ int main(void)
   float l = (letters * 100) / (float) words;
   float s = (sentences * 100) / words;
   double index = (0.0588 * (double) l) - (0.296 * s) - 15.8;
-  printf("%f\n", index);
   
   if (index > 16)
   {
