@@ -16,7 +16,7 @@ int main(void)
   int sentences = sentcount(text);
 
   float l = (letters * 100) / (float) words;
-  float s = (sentences * 100) / words;
+  float s = (sentences * 100) / (float) words;
   double index = (0.0588 * (double) l) - (0.296 * s) - 15.8;
   
   if (index > 16)
