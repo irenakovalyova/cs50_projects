@@ -3,71 +3,74 @@
 #include <ctype.h>
 #include <math.h>
 
-int alphacount (string line);
-int wordcount(string line);
-int sentcount(string line);
+int alphacount(string txt);
+int wordcount(string txt);
+int sentcount(string txt);
 
+// Determines the reading level of the text provided by the user
 int main(void)
 {
+    string text = get_string("Text: ");
+    int letters = alphacount(text);
+    int words = wordcount(text);
+    int sentences = sentcount(text);
 
-  string text = get_string ("Text: ");
-  int letters = alphacount(text);
-  int words = wordcount(text);
-  int sentences = sentcount(text);
+    float l = (letters * 100) / (float) words;
+    float s = (sentences * 100) / (float) words;
+    double index = (0.0588 * (double) l) - (0.296 * s) - 15.8;
 
-  float l = (letters * 100) / (float) words;
-  float s = (sentences * 100) / (float) words;
-  double index = (0.0588 * (double) l) - (0.296 * s) - 15.8;
-  
-  if (index > 16)
-  {
-    printf("Grade 16+\n");
-  }
-  else if (index < 1)
-  {
-    printf("Before Grade 1\n");
-  }
-  else
-  {
-    printf("Grade %d\n", (int) round(index));
-  }
+    if (index > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else if (index < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else
+    {
+        printf("Grade %d\n", (int) round(index));
+    }
 }
 
-int alphacount (string line)
+// Counts letters
+int alphacount(string txt)
 {
-  int l = 0;
-  for (int i = 0; line[i] != '\0'; i++)
-  {
-    if (isalpha(line[i]))
+    int l = 0;
+    for (int i = 0; txt[i] != '\0'; i++)
     {
-      l++;
+        if (isalpha(txt[i]))
+        {
+            l++;
+        }
     }
-  }
-  return l;
+    return l;
 }
 
-int wordcount(string line)
+// Counts words
+int wordcount(string txt)
 {
-  int w = 1;
-  for (int i = 0; line[i] != '\0'; i++)
-  {
-    if (isspace(line[i]))
+    int w = 1;
+    for (int i = 0; txt[i] != '\0'; i++)
     {
-      w++;
+        if (isspace(txt[i]))
+        {
+            w++;
+        }
     }
-  }
-  return w;
+    return w;
 }
 
-int sentcount(string line)
+// Counts sentences
+int sentcount(string txt)
 {
-  int s = 0;
-  for (int i = 0; line[i] != '\0'; i++)
-  {
-    if (line[i] == '!' || line[i] == '.' || line[i] == '?')
+    int s = 0;
+    for (int i = 0; txt[i] != '\0'; i++)
     {
-      s++;
+        if (txt[i] == '!' || txt[i] == '.' || txt[i] == '?')
+        {
+            s++;
+        }
     }
-  }
-  return s;
+    return s;
 }
