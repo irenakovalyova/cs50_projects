@@ -21,7 +21,7 @@ int main(void)
   
   if (index > 16)
     {
-      printf("Grade: 16+\n");
+      printf("Grade 16+\n");
     }
   else if (index < 1)
     {
@@ -29,7 +29,7 @@ int main(void)
     }
   else
     {
-      printf("Grade: %d\n", (int) index);
+      printf("Grade %d\n", (int) index);
     }
 }
 
