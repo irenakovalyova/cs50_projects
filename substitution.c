@@ -12,12 +12,29 @@ int main(int argc, string argv[])
         printf("Usage: ./substitution key\n");
         return 1;
     }
-    if (strlen(argv[1]) != 26)
+    else if (strlen(argv[1]) != 26)
     {
         printf("Key must contain 26 characters.\n");
-        return 2;
+        return 1;
     }
-
+    for (int i = 0; i < (strlen(argv[1])); i++)
+    {
+        if (!isalpha(argv[1][i]))
+        {
+            printf("Invalid key: only alphabetic symbols are allowed\n");
+            return 1;
+        }
+        
+        for (int j = 0; j != i; j++)
+        {
+            if (argv[1][i] == argv[1][j] || argv[1][i] == tolower(argv[1][j]) || argv[1][i] == toupper(argv[1][j]))
+            {
+                printf("Invalid key: duplicated symbols are not allo0wed\n");
+                return 1;
+            }
+        }
+    }
+    
     string plaintext = get_string("plaintext: ");
     printf("ciphertext: %s\n", encryptor(argv[1], plaintext));
 }
