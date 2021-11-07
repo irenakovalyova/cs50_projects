@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: 1) It was the slowest one compared to others when using the same file with the worst case scenario
+
+sort2 uses: Merge sort
+
+How do you know?: It was the fastest one
+
+sort3 uses: Selection sort
+
+How do you know?: The remaining one is obviously the selection sort
