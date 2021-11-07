@@ -75,7 +75,14 @@ bool vote(string name)
             validation = true;
         }
     }
-    return validation;
+    if (validation == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // Print the winner (or winners) of the election
