@@ -103,7 +103,7 @@ bool vote(int rank, string name, int ranks[])
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if(strcmp(name, candidates[i]) == 0)
+        if (strcmp(name, candidates[i]) == 0)
         {
             ranks[rank] = i;
             return true;
@@ -175,13 +175,14 @@ void sort_pairs(void)
 bool is_circle(int loser, int winner)
 {
     // Base Case 1: if path exist
-    if (loser == winner) {
+    if (loser == winner) 
+    {
         return true; // it forms a cycle
     }
 
     for (int i = 0; i < candidate_count; i++)
     {
-        if(locked[loser][i]) //check if loser is locked with a candidate
+        if (locked[loser][i]) //check if loser is locked with a candidate
         {
             return is_circle(i, winner); // check if that candidate is locked with  winner
         }
@@ -222,8 +223,11 @@ void print_winner(void)
 
         }
 
-        if (isLoser) continue;
-        if(!isLoser) 
+        if (isLoser) 
+        {
+            continue;
+        }
+        if (!isLoser) 
         {
             printf("%s\n", candidates[i]);
         }
