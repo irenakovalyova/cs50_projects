@@ -170,21 +170,22 @@ void sort_pairs(void)
 
 
 
-bool is_circle(int loser, int winner)
+bool is_circle(int winner, int loser)
 {
-    // Base Case 1: if path exist
-    if (loser == winner) {
-        return true; // it forms a cycle
+    // if path exist
+    if (locked[loser][winner] == true) 
+    {
+        return true;
     }
 
     for (int i = 0; i < candidate_count; i++)
     {
-        if(locked[loser][i]) //check if loser is locked with a candidate
+        // check if winner is locked
+        if(locked[i][winner]) 
         {
-            return is_circle(i, winner); // check if that candidate is locked with  winner
+            return is_circle(i, loser); 
         }
     }
-
     return false;
 }
 
