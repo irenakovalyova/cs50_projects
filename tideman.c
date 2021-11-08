@@ -171,87 +171,62 @@ void sort_pairs(void)
 
 
 
-void validateLock(int j)
+
+bool is_circle(int loser, int winner)
 {
-    if (j == 0)
-    {
-        return;
+    // Base Case 1: if path exist
+    if (loser == winner) {
+        return true; // it forms a cycle
     }
 
-    int r = 0;
-    bool rank[j];
-    for (int i = 0; i < j; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        rank[i] = false;
-    }
-
-    // checks all the submatrixes up to a single square using recursion
-    validateLock(j - 1);
-
-    for (int i = 0; i < j; i++)
-    {
-        for (int k = 0; k < j; k++)
+        if(locked[loser][i]) //check if loser is locked with a candidate
         {
-            if (locked[i][k] == true)
-            {
-                rank[i] = true;
-            }
+            return is_circle(i, winner); // check if that candidate is locked with  winner
         }
     }
 
-    for (int i = 0; i < j; i++)
-    {
-        if (rank[i] == true)
-        {
-            r++;
-        }
-    }
-
-    // if the rank is max the lock is canceled
-    if (r == j)
-    {
-        lock = false;
-    }
+    return false;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    // TODO
     for (int i = 0; i < pair_count; i++)
     {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-
-        validateLock(candidate_count);
-        // if the validateLock function found a cycle we reverse the lock
-        if (!lock)
+        if (!is_circle(pairs[i].loser, pairs[i].winner))
         {
-            locked[pairs[i].winner][pairs[i].loser] = false;
+            locked[pairs[i].winner][pairs[i].loser] = true;
         }
-        lock = true;
+
     }
+    return;
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
-    int winner;
-    int rank;
-
+    // TODO
     for (int i = 0; i < candidate_count; i++)
     {
-        rank = 0;
-        for (int k = 0; k < candidate_count; k++)
+        bool isLoser = false;
+        for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[k][i] == false)
+            if (locked[j][i])
             {
-                rank++;
+                isLoser = true;
+                break;
             }
+
         }
 
-        // Prints all the names that are the source of the graph
-        if (rank == candidate_count)
+        if (isLoser) continue;
+        if(!isLoser) 
         {
             printf("%s\n", candidates[i]);
         }
     }
+    return;
 }
