@@ -139,7 +139,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
             
             // Right edge
-            else if (i > 0 && j == 0)
+            else if (i > 0 && j == (width - 1))
             {
                 blurredRed = round((image[i - 1][j].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i][j].rgbtRed) / 6.0);
                 blurredGreen = round((image[i - 1][j].rgbtGreen + image[i - 1][j - 1].rgbtGreen + image[i][j - 1].rgbtGreen + image[i + 1][j - 1].rgbtGreen + image[i + 1][j].rgbtGreen + image[i][j].rgbtGreen) / 6.0);
@@ -147,7 +147,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
             
             // Top edge
-            else if (i > 0 && j == 0)
+            else if (j > 0 && i == 0)
             {
                 blurredRed = round((image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i][j + 1].rgbtRed + image[i][j].rgbtRed) / 6.0);
                 blurredGreen = round((image[i][j - 1].rgbtGreen + image[i + 1][j - 1].rgbtGreen + image[i + 1][j].rgbtGreen + image[i + 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen + image[i][j].rgbtGreen) / 6.0);
@@ -155,7 +155,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
             
             // Bottom edge
-            else if (i > 0 && j == 0)
+            else if (j > 0 && i == (height - 1))
             {
                 blurredRed = round((image[i][j - 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed + image[i][j + 1].rgbtRed + image[i][j].rgbtRed) / 6.0);
                 blurredGreen = round((image[i][j - 1].rgbtGreen + image[i - 1][j - 1].rgbtGreen + image[i - 1][j].rgbtGreen + image[i - 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen + image[i][j].rgbtGreen) / 6.0);
