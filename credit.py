@@ -37,7 +37,7 @@ elif (luhn_num % 10 == 0) and (i == 15) and (start_numbers == 34 or start_number
     print("AMEX")
 elif (luhn_num % 10 == 0) and (i == 16) and (start_numbers >= 51) and (start_numbers <= 55): 
     print("MASTERCARD")
-elif (luhn_num % 10 == 0) and (i == 16 or i == 13) and (start_numbers / 10 == 4): 
+elif (luhn_num % 10 == 0) and (i == 16 or i == 13) and (int(start_numbers / 10) == 4): 
     print("VISA");
 else:
     print("INVALID")
