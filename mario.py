@@ -11,16 +11,16 @@ width = 1
 spaces = height - width
 
 for i in range(0, height, 1):
-    for j in range(1, (spaces + 1), 1):
+    for j in range(1, spaces, 1):
         print(" ", end = '')
         
-    for z in range (1, (width + 1), 1):
+    for z in range (1, width, 1):
         print("#", end = '')
         
     for s in range (0, 1, 1):
         print(" ", end = '')
         
-    for h in range(1, (width + 1), 1):
+    for h in range(1, width, 1):
         print("#", end = '')
     
     print('\n')
