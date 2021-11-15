@@ -1,7 +1,6 @@
 from cs50 import get_int
 
-card = get_int("What is the card number? ")
-print(card)
+card = get_int("Number: ")
 
 luhn_num = 0
 card_temp = card
@@ -19,8 +18,6 @@ while card_temp != 0:
         total_sum_odd += product_digit_sum
     card_temp = int(card_temp / 10)
     i += 1
-
-print(total_sum_odd)
     
 card_temp = card
 i = 0
@@ -31,13 +28,8 @@ while card_temp != 0:
     card_temp = int(card_temp / 10)
     i = i + 1
     
-print(total_sum_even)
-    
 luhn_num = total_sum_odd + total_sum_even
 start_numbers = int(card / 10 ** (i - 2))
-
-print(luhn_num)
-print(start_numbers)
 
 if luhn_num % 10 != 0:
     print("INVALID")
