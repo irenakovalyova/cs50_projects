@@ -4,7 +4,7 @@ height = 0
 
 while True:
     height = get_int("Height: ")
-    if height >= 1 and height <= 8:
+    if height > 1 and height < 8:
         break
 
 width = 1
