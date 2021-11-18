@@ -59,4 +59,10 @@ SELECT * FROM flights WHERE day=29 AND flights.month=7 ORDER BY hour;
 
 SELECT * SELECT airports;
 
+SELECT * from phone_calls
+WHERE caller='(367) 555-5533' AND day=28 AND month=7;
+
+SELECT * FROM people 
+WHERE phone_number='(375) 555-8161';
+
 
