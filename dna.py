@@ -40,10 +40,10 @@ def main():
     # Read database file
     with open(argv[1], mode="r") as profile_database:
         reader = csv.DictReader(profile_database)
-        # Populate list of STRs
+        # Populate list of STRs with CSV field names skipping 'name'
         STRs = reader.fieldnames[1:]
         for row in reader:
-            # Add person to profiles
+            # Add person to profiles as a dictionary
             person_profiles.append(row)
 
     # Initialise dictionary for sequence file
