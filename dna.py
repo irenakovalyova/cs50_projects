@@ -2,29 +2,31 @@ from sys import argv, exit
 import csv
 
 
-def find_repeats(sequence, STR):
-    # Number of bases in Short Tandem Repeat
+def str_repeats(sequence, STR):
+    # Legnth of each STR
     L = len(STR)
-
-    max_repeats = 0
+    
+    # Initialize maximum repeats of the STR
+    repeats_max = 0
     for i in range(len(sequence)):
-        # Initialise and reset repeat counter
+        
+        # Initialise the counter for STR repeats
         repeats = 0
 
         if sequence[i: i + L] == STR:
-            # Account for first match
+            # Start counting - first match
             repeats += 1
-            # Keep adding to count for consecutive repeats
+            # Continue counting repeats
             while sequence[i: i + L] == sequence[i + L: i + (2 * L)]:
                 repeats += 1
-                # Shift reading frame (value of i resets in for loop so we can update it here)
+                # Incrementing i for the legnth of the STR
                 i += L
 
-        # Update max count if current repeat steak is greater than max
-        if repeats > max_repeats:
-            max_repeats = repeats
+        # If current number of repeats is greater than the previous one, update
+        if repeats > repeats_max:
+            repeats_max = repeats
 
-    return max_repeats
+    return repeats_max
 
 
 def main():
@@ -33,31 +35,31 @@ def main():
         exit(1)
 
     STRs = []
-    profiles = []
+    person_profiles = []
 
-    # Read in database file - using `with` means we don't have to close the file
-    with open(argv[1], mode="r") as database:
-        reader = csv.DictReader(database)
-        # Populate list of Short Tandem Repeats (STRs)
+    # Read database file
+    with open(argv[1], mode="r") as profile_database:
+        reader = csv.DictReader(profile_database)
+        # Populate list of STRs
         STRs = reader.fieldnames[1:]
         for row in reader:
             # Add person to profiles
-            profiles.append(row)
+            person_profiles.append(row)
 
     # Initialise dictionary for sequence file
     seq_str_count = dict.fromkeys(STRs, 0)
 
-    # Read in sequence file
+    # Read sequence file
     with open(argv[2], mode="r") as sequence_file:
-        # Grab first line of txt file
+        # Get the first line of the txt file
         sequence = sequence_file.readline()
-        # Loop over every STR from the database
+        # Go through all STRs from the database
         for STR in STRs:
-            # Update the Sequence STR dictionary with max amount of repeats
-            seq_str_count[STR] = find_repeats(sequence, STR)
+            # Update the dictionary for a sequence file with maximum repeats
+            seq_str_count[STR] = str_repeats(sequence, STR)
 
-    # Check if any person has same amount of STR repeats as sequence
-    for profile in profiles:
+    # Check if there is a match in the database
+    for profile in person_profiles:
         match_count = 0
 
         for STR in STRs:
