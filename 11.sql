@@ -1,5 +1,8 @@
 SELECT movies.title
-FROM movies 
-INNER JOIN ratings ON movies.id=ratings.movie_id
-WHERE id IN (SELECT movie_id FROM stars WHERE person_id IN (SELECT id FROM people WHERE name='Chadwick Boseman')
-ORDER BY rating DESC
+FROM movies
+JOIN stars ON movies.id=stars.movie_id
+JOIN people ON stars.person_id=people.id
+JOIN ratings ON movies.id=ratings.movie_id
+WHERE people.name='Kevin Bacon' AND people.birth=1958
+ORDER BY ratings.rating DESC
+LIMIT 5;
