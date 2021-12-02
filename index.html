@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What is the capital of Ukraine?</h3>
+                <h4 id="q1"></h4>
+
+                <button id="Kyiv">Kyiv</button>
+                <button id="Kharkiv">Kharkiv</button>
+                <button id="Lviv">Lviv</button>
+
+            </div>
+
+        <script>
+
+            // TODO: Add code to check answers to questions
+
+            document.querySelector('#Kyiv').onclick = function() {
+                document.querySelector('#Kyiv').style.backgroundColor = 'green';
+                document.querySelector('#q1').innerHTML = 'Correct!';
+                document.querySelector('#q1').style.color = 'green';
+            };
+            document.querySelector('#Kharkiv').onclick = function() {
+                document.querySelector('#Kharkiv').style.backgroundColor = 'red';
+                document.querySelector('#q1').innerHTML = 'Incorrect';
+                document.querySelector('#q1').style.color = 'red';
+            };
+            document.querySelector('#Lviv').onclick = function() {
+                document.querySelector('#Lviv').style.backgroundColor = 'red';
+                document.querySelector('#q1').innerHTML = 'Incorrect';
+                document.querySelector('#q1').style.color = 'red';
+            };
+
+        </script>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+
+                <h3>What year did Ukraine bacome independent?</h3>
+                <h4 id="q2"></h4>
+
+                <form>
+                    <input autocomplete="off" autofocus id="answer" placeholder="Your answer" type="text">
+                    <input type="submit">
+                </form>
+
+                <script>
+
+            // TODO: Add code to check answers to questions
+
+            document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').onsubmit = function() {
+                if (document.querySelector('#answer').value == "1991")
+                {
+                    document.querySelector('#answer').style.backgroundColor = 'green';
+                    document.querySelector('#q2').innerHTML = 'Correct!';
+                    document.querySelector('#q2').style.color = 'green';
+                }
+                else
+                {
+                    document.querySelector('#answer').style.backgroundColor = 'red';
+                    document.querySelector('#q2').innerHTML = 'Incorrect';
+                    document.querySelector('#q2').style.color = 'red';
+                }
+                return false;
+                };
+            });
+
+            </script>
+
+
+
+            </div>
+
+        </div>
+    </body>
+</html>
