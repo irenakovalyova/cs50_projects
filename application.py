@@ -89,9 +89,9 @@ def buy():
         if not symbol:
             return apology("Missing stock symbol")
         quantity = float(request.form.get("shares"))
-        elif not quantity:
+        if not quantity:
             return apology("Missing stock quantity")
-        elif not quote:
+        if not quote:
             return apology("Invalid symbol")
         else:
             price = quote["price"]
