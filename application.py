@@ -91,7 +91,9 @@ def buy():
         quantity = float(request.form.get("shares"))
         if not quantity:
             return apology("Missing stock quantity")
-        if quantity <= 0 or type(quantity) != int:
+        if quantity <= 0:
+            return apology("Invalid quantity")
+        if (quantity - int(quantity)) > 0:
             return apology("Invalid quantity")
         if not quote:
             return apology("Invalid symbol")
@@ -111,8 +113,7 @@ def buy():
                 db.execute("UPDATE users SET cash=? WHERE id=?", remaining_cash, user_id)
                 db.execute("INSERT INTO transactions (user_id, symbol, quantity, price, transaction_type) VALUES(?, ?, ?, ?, 'BUY')",
                             user_id, symbol, quantity, price)
-
-        return redirect("/")
+                return redirect("/")
 
     else:
         return render_template("buy.html")
