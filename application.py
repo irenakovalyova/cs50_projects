@@ -85,13 +85,15 @@ def buy():
 
         """Checking if the user filled in all the fields"""
         symbol = request.form.get("symbol")
+        quote = lookup(symbol)
         if not symbol:
             return apology("Missing stock symbol")
         quantity = float(request.form.get("shares"))
-        if not quantity:
+        elif not quantity:
             return apology("Missing stock quantity")
+        elif not quote:
+            return apology("Invalid symbol")
         else:
-            quote = lookup(symbol)
             price = quote["price"]
             purchase = price * quantity
             user_id = session.get("user_id")
