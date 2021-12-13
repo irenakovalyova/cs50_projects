@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Stock Prices
+{% endblock %}
+
+{% block main %}
+
+
+<h1>Add funds</h1>
+
+
+    <form action="/add-funds" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="funds" placeholder="Amoumt" type="number">
+        </div>
+        <div class="form-group">
+            <p id="add-funds-status"></p>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+
+<script>
+        window.onload = function()
+        {
+            const queryString = window.location.search;
+            console.log(queryString);
+            const urlParams = new URLSearchParams(queryString);
+            const status = urlParams.get('status');
+            console.log(status);
+            let statusMessage = document.getElementById('add-funds-status');
+            console.log(statusMessage);
+            
+            if (status === 'Error')
+            {
+                statusMessage.innerHTML = 'Missing funds amount';
+                statusMessage.style.color = 'red';
+            }
+            else if (status === 'Success')
+            {
+                statusMessage.innerHTML = 'Funds added';
+                statusMessage.style.color = 'green';
+            }
+            return false;
+        };
+    </script>
+{% endblock %}
