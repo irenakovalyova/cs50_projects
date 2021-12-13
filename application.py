@@ -216,7 +216,7 @@ def register():
         if not username:
             return apology("Missing username")
         usernames = db.execute("SELECT username FROM users")
-        if username in usernames:
+        if username["username"] in usernames:
             return apology("Username already exists")
         password = request.form.get("password")
         if not password:
