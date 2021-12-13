@@ -207,7 +207,8 @@ def quote():
         elif not quote:
             return apology("Invalid symbol")
         else:
-            return render_template("/quoted.html", quote=quote)
+            price = round(quote["price"], 2)
+            return render_template("/quoted.html", quote=quote, price=price)
 
     else:
         return render_template("quote.html")
