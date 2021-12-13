@@ -202,14 +202,12 @@ def quote():
 
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
-        price = float(quote["price"])
-        price = round(price, 2)
         if not symbol:
             return apology("Missing stock symbol")
         elif not quote:
             return apology("Invalid symbol")
         else:
-            return render_template("/quoted.html", quote=quote, price=price)
+            return render_template("/quoted.html", quote=quote)
 
     else:
         return render_template("quote.html")

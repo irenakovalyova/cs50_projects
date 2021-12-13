@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<p> A share of {{ quote.name }} / {{ quote.symbol }} costs {{ price }}.
+<p> A share of {{ quote.name }} / {{ quote.symbol }} costs {{ quote.price }}.
     <table class="responsive-table">
                     <thead>
                         <tr>
@@ -16,7 +16,7 @@
                     <tbody>
                             <tr>
                                 <td>{{ quote.name }} / {{ quote.symbol }}</td>
-                                <td>{{ price }}</td>
+                                <td>{{ quote.price }}</td>
                             </tr>
                     </tbody>
                 </table>
