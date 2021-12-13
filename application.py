@@ -70,7 +70,8 @@ def index():
             }
             portfolio.append(portfolio_item)
             total_portfolio_value = total_portfolio_value + quote["price"] * stock["SUM(quantity)"]
-
+            
+    """Providing grand tital and balance in USD to be shown on the page"""
     grand_total = usd(balance + total_portfolio_value)
     balance = usd(balance)
 
@@ -92,15 +93,23 @@ def buy():
         quantity = request.form.get("shares")
         if not quantity:
             return apology("Missing stock quantity")
+            
+        """While quantity is still a string, checking if it contains only digits"""
+        
         if not quantity.isdigit():
             return apology("Invalid quantity")
-            
+        
+        """Casting quantity to an int and checking if it's positive"""    
         quantity = int(request.form.get("shares"))
         
         if quantity <= 0:
             return apology("Invalid quantity")
+            
+        """Checking if the user provided a valid stock symbol"""
         if not quote:
             return apology("Invalid symbol")
+            
+        """If all data is valid, continue"""
         else:
             price = quote["price"]
             purchase = price * quantity
@@ -146,7 +155,8 @@ def history():
             "time": transaction["time"]
         }
         transaction_list.append(transaction_list_item)
-
+    
+    """Return the history page with obtained data"""
     return render_template("history.html", transaction_list=transaction_list)
 
 
@@ -206,11 +216,14 @@ def quote():
 
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
+        
+        """Check user data validity"""
         if not symbol:
             return apology("Missing stock symbol")
         elif not quote:
             return apology("Invalid symbol")
         else:
+            """If the data is valid, transform the price to USD and return the /quoted template"""
             price = usd(quote["price"])
             return render_template("/quoted.html", quote=quote, price=price)
 
@@ -222,7 +235,8 @@ def quote():
 def register():
     """Register user"""
     if request.method == "POST":
-
+        """Obtain the data from user and check validity"""
+        
         username = request.form.get("username")
         if not username:
             return apology("Missing username")
@@ -238,7 +252,8 @@ def register():
             return apology("Missing password confirmation")
         if not password == confirmation:
             return apology("Invalid password confirmation")
-
+        """Hash the password and add hashed value to the database"""
+        
         pwhash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
 
         db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, pwhash)
@@ -255,7 +270,6 @@ def sell():
     """Sell shares of stock"""
 
     if request.method == "POST":
-
         """Check if all form values submitted"""
 
         symbol = request.form.get("symbol")
@@ -295,7 +309,8 @@ def sell():
         user_id = session.get("user_id")
         portfolio_list = db.execute("SELECT symbol, COUNT(id) FROM transactions WHERE user_id=? GROUP BY symbol", user_id)
         stock_options = []
-
+        """Loop over thansactions to see what stocks the user hasand add them to the stock_options array"""
+        
         for item in portfolio_list:
             symbol = item["symbol"]
             stock_quantity = db.execute("SELECT SUM(quantity) FROM transactions WHERE user_id=? AND symbol=?", user_id, symbol)
@@ -313,11 +328,12 @@ def add_funds():
     """Add funds to the account"""
 
     if request.method == "POST":
-
+        """Obtain the funds amount from user and validate it"""
         funds = request.form.get("funds")
         if not funds:
             return redirect("/add-funds?status=Error")
         else:
+            
             user_id = session.get("user_id")
             cash = db.execute("SELECT cash FROM users WHERE id=?", user_id)
             new_cash = float(cash[0]["cash"]) + float(funds)
