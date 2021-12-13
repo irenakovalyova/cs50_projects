@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Stock Prices
+{% endblock %}
+
+{% block main %}
+<h1>Portfolio</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Quantity</th>
+                            <th>Current price</th>
+                            <th>Current value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in portfolio %}
+                            <tr>
+                                <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.quantity }}</td>
+                                <td>{{ stock.price }}</td>
+                                <td>{{ stock.value }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p><b>Current balance:</b> {{ balance }}</p>
+                <p><b>Grand total:</b> {{ grand_total }}</p>
+{% endblock %}
