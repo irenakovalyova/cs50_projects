@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Stock Prices
+{% endblock %}
+
+{% block main %}
+<p> A share of {{ quote.name }} / {{ quote.symbol }} costs ${{ quote.price }}.
+    <table class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>{{ quote.name }} / {{ quote.symbol }}</td>
+                                <td>{{ price }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+{% endblock %}
