@@ -203,7 +203,7 @@ def quote():
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
         price = float(quote["price"])
-        price - round(price, 2)
+        price = round(price, 2)
         if not symbol:
             return apology("Missing stock symbol")
         elif not quote:
