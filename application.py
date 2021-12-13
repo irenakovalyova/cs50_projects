@@ -91,6 +91,8 @@ def buy():
         quantity = float(request.form.get("shares"))
         if not quantity:
             return apology("Missing stock quantity")
+        if quantity <= 0 or type(quantity) != int:
+            return apology("Invalid quantity")
         if not quote:
             return apology("Invalid symbol")
         else:
