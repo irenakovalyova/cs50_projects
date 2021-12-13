@@ -65,13 +65,14 @@ def index():
             portfolio_item = {
                 "symbol": stock["symbol"],
                 "quantity": stock["SUM(quantity)"],
-                "price": quote["price"],
-                "value": round(quote["price"] * stock["SUM(quantity)"], 2)
+                "price": usd(quote["price"]),
+                "value": usd(quote["price"] * stock["SUM(quantity)"])
             }
             portfolio.append(portfolio_item)
-            total_portfolio_value = total_portfolio_value + portfolio_item["value"]
+            total_portfolio_value = total_portfolio_value + quote["price"] * stock["SUM(quantity)"]
 
-    grand_total = round((balance + total_portfolio_value), 2)
+    grand_total = usd(balance + total_portfolio_value)
+    balance = usd(balance)
 
     return render_template("index.html", portfolio=portfolio, balance=balance, grand_total=grand_total)
 
