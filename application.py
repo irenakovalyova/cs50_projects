@@ -109,7 +109,7 @@ def buy():
         if not quote:
             return apology("Invalid symbol")
             
-        """If all data is valid, continue"""
+            """If all data is valid, continue"""
         else:
             price = quote["price"]
             purchase = price * quantity
