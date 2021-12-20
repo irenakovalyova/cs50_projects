@@ -92,6 +92,44 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
+    explored_count = 0
+
+    # Initializin the source actor as the first node in the graph
+    start = Node(source,parent=None, action=None)
+    queue = QueueFrontier()
+    queue.add(start)
+
+    explored = set()
+
+    while True:
+
+        # When the queue is empty, then no path can be found
+        if queue.empty():
+            return None
+
+        node = queue.remove()
+        explored_count += 1
+
+        explored.add(node.state)
+
+        neighbors = neighbors_for_person(node.state)
+        for movie, actor in neighbors:
+            if actor not in explored and not queue.contains_state(actor):
+                child = Node(state=actor, parent=node, action=movie)
+                if child.state == target:
+                    path = []
+                    node = child
+                    while node.parent is not None:
+                        path.append((node.action, node.state))
+                        node = node.parent
+
+                    path.reverse()
+                    return path
+                queue.add(child)
+
+
+
+
     # TODO
     raise NotImplementedError
 
