@@ -92,7 +92,6 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
-    explored_count = 0
 
     # Initializin the source actor as the first node in the graph
     start = Node(source,parent=None, action=None)
@@ -101,21 +100,25 @@ def shortest_path(source, target):
 
     explored = set()
 
+    # Repeat until the queue is empty
     while True:
 
-        # When the queue is empty, then no path can be found
+        # When the queue is empty and still no target, then no path can be found
         if queue.empty():
             return None
 
+        # Take a node from the queue and add the actor it contains to explored
         node = queue.remove()
-        explored_count += 1
 
         explored.add(node.state)
 
+        # Creating children for the node, children for its children etc.
         neighbors = neighbors_for_person(node.state)
         for movie, actor in neighbors:
             if actor not in explored and not queue.contains_state(actor):
                 child = Node(state=actor, parent=node, action=movie)
+
+                # If target found, the process is interrupted and path returned
                 if child.state == target:
                     path = []
                     node = child
@@ -125,6 +128,8 @@ def shortest_path(source, target):
 
                     path.reverse()
                     return path
+
+                # Before the target is found each new child is added to queue
                 queue.add(child)
 
 
