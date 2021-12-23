@@ -68,14 +68,16 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
+    actions_set = set()
     actions_set = actions(board)
     if action not in actions_set:
-        raise Exception('Not a valid move')
+        raise NameError('Not a valid move')
+    move = player(board)
     i = action[0]
     j = action[1]
 
     new_board = copy.deepcopy(board)
-    new_board[i][j] = player(board)
+    new_board[i][j] = move
 
     return new_board
 
@@ -152,41 +154,55 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
+    currentactions = actions(board)
     if player(board) == X:
-        best_move = None
-        max = -2
+        max_value = -2
+        move = set()
+        for action in currentactions:
+            current_value = maximum(result(board, action))
+            if current_value > max_value:
+                max_value = current_value
+                move = action
+    else:
+        min_value = 2
+        move = set()
+        for action in currentactions:
+            current_value = minimum(result(board, action))
+            if current_value < min_value:
+                min_value = current_value
+                move = action
+    return move
 
-        actions_set = actions(board)
+def maximum(board):
+    """
+    Returns maximum value of the current board by calculating future moves
+    """
 
-        if terminal(board) is True:
-            return winner(board)
-        else:
-            for move in actions_set:
-                move_result = result(board, move)
-                if utility(move_result) > max:
-                    max = utility(move_result)
-                    opponent_action = minimax(move_result)
-                    if utility(opponent_action) != -1:
-                        best_move = move
-                        minimax(result(best_move))
-            return best_move
-            
+    if terminal(board) is True:
+        return utility(board)
+
+    max_value = -2
+    actions_set = actions(board)
+
+    for action in actions_set:
+        value_result_board = minimum(result(board, action))
+        max_value = max(max_value, value_result_board)
     
-    if player(board) == 0:
-        best_move = None
-        min = 2
+    return max_value
 
-        actions_set = actions(board)
+def minimum(board):
+    """
+    Returns minimum value of the current board by calculating future moves
+    """
 
-        if terminal(board) is True:
-            return winner(board)
-        else:
-            for move in actions_set:
-                move_result = result(board, move)
-                if utility(move_result) < min:
-                    min = utility(move_result)
-                    opponent_action = minimax(move_result)
-                    if utility(opponent_action) != 1:
-                        best_move = move
-                        minimax(result(best_move))
-            return best_move
+    if terminal(board) is True:
+        return utility(board)
+
+    min_value = 2
+    actions_set = actions(board)
+
+    for action in actions_set:
+        value_result_board = maximum(result(board, action))
+        min_value = min(min_value, value_result_board)
+    
+    return min_value
