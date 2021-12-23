@@ -4,6 +4,7 @@ Tic Tac Toe Player
 
 import math
 import copy
+from types import NoneType
 
 X = "X"
 O = "O"
@@ -25,7 +26,7 @@ def player(board):
     """
     # X player always goes first
     if board == initial_state():
-        return 'X'
+        return X
 
     # It's no one's turn if it's a terminal board
     elif terminal(board) == True:
@@ -38,17 +39,16 @@ def player(board):
     when it's X's turn, and X's move count is bigger when it's O's turn
     """
 
-    else:
-        for i in range(0, 3):
-            for j in range(0, 3):
-                if board[i][j] == 'X':
-                    x_count += 1
-                elif board[i][j] == 'O':
-                    o_count += 1
-        if x_count > o_count:
-            return 'O'
-        elif x_count == o_count:
-            return 'X'
+    for i in range(0, 3):
+        for j in range(0, 3):
+            if board[i][j] == X:
+                x_count += 1
+            elif board[i][j] == O:
+                o_count += 1
+    if x_count > o_count:
+        return O
+    elif x_count == o_count:
+        return X
 
 def actions(board):
     """
@@ -58,9 +58,9 @@ def actions(board):
     possible_moves = set()
     for i in range(0, 3):
         for j in range(0, 3):
-            if board[i][j] == 'EMPTY':
+            if board[i][j] == EMPTY:
                 action_tuple = (i, j)
-                possible_moves.append(action_tuple)
+                possible_moves.add(action_tuple)
     return possible_moves
 
 
@@ -68,17 +68,14 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    actions_set = set()
     actions_set = actions(board)
     if action not in actions_set:
-        raise NameError('Not a valid move')
-    move = player(board)
+        raise Exception('Not a valid move')
     i = action[0]
     j = action[1]
 
-    original_board_copy = copy.deepcopy(board)
-    new_board = board
-    new_board[i][j] = move
+    new_board = copy.deepcopy(board)
+    new_board[i][j] = player(board)
 
     return new_board
 
@@ -87,22 +84,29 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
+
+    # Vertical win
     for i in range(0, 3):
-        for j in range(0, 3):
-            if board[i][j] == board[i][j + 1] == board[i][j + 2] == 'X' or \
-                board[i][j] == board[i + 1][j] == board[i + 2][j] == 'X' or \
-                board[0][0] == board[1][1] == board[2][2] == 'X' or \
-                board[2][0] == board[1][1] == board[0][2] == 'X':
-                    return 'X'
-            
-            elif board[i][j] == board[i][j + 1] == board[i][j + 2] == 'O' or \
-                board[i][j] == board[i + 1][j] == board[i + 2][j] == 'O' or \
-                board[0][0] == board[1][1] == board[2][2] == 'O' or \
-                board[2][0] == board[1][1] == board[0][2] == 'O':
-                    return 'O'
-            
-            else:
-                return None
+        if (board[0][i] != None and board[0][i] == board[1][i] and board[1][i] == board[2][i]):
+            return board[0][i]
+                
+    # Horizontal win
+    for i in range(0, 3):
+        if (board[i] == ['X', 'X', 'X']):
+            return 'X'
+        elif (board[i] == ['O', 'O', 'O']):
+            return 'O'
+
+    # Diagonal win from left to right
+    if (board[0][i] != None and board[0][0] == board[1][1] and board[1][1] == board[2][2]):
+            return board[0][0]
+
+    # Diagonal win from right to left
+    if (board[0][2] != None and board[0][2] == board[1][1] and board[1][1] == board[2][0]):
+            return board[0][2]
+           
+    else:
+        return None
 
 
 def terminal(board):
@@ -116,7 +120,7 @@ def terminal(board):
     empty_count = 0
     for i in range(0, 3):
         for j in range(0, 3):
-            if board[i][j] == 'EMPTY':
+            if board[i][j] == EMPTY:
                 empty_count +=1
 
     if empty_count == 0:
@@ -133,46 +137,56 @@ def utility(board):
     game_winner = winner(board)
     if_terminal = terminal(board)
 
+    score = 0
     if if_terminal == True:
-        if game_winner == 'X':
-            return 1
-        elif game_winner == 'O':
-            return -1
+        if game_winner == X:
+            score = 1
+        elif game_winner == O:
+            score = -1
         elif game_winner == None:
-            return 0
+            score = 0
+    return score
 
 
 def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    if player(board) == 'O':
+    if player(board) == X:
         best_move = None
+        max = -2
+
         actions_set = actions(board)
+
         if terminal(board) is True:
-            return None
+            return winner(board)
         else:
-            for action in actions_set:
-                move = result(board, action)
-                if utility(move) <= utility(board):
-                    opponent_action = minimax(move)
-                    if utility(opponent_action) != 1:
+            for move in actions_set:
+                move_result = result(board, move)
+                if utility(move_result) > max:
+                    max = utility(move_result)
+                    opponent_action = minimax(move_result)
+                    if utility(opponent_action) != -1:
                         best_move = move
-                        minimax(best_move)
+                        minimax(result(best_move))
             return best_move
             
     
-    if player(board) == 'X':
+    if player(board) == 0:
         best_move = None
+        min = 2
+
         actions_set = actions(board)
+
         if terminal(board) is True:
-            return None
+            return winner(board)
         else:
-            for action in actions_set:
-                move = result(board, action)
-                if utility(move) >= utility(board):
-                    opponent_action = minimax(move)
-                    if utility(opponent_action) != -1:
+            for move in actions_set:
+                move_result = result(board, move)
+                if utility(move_result) < min:
+                    min = utility(move_result)
+                    opponent_action = minimax(move_result)
+                    if utility(opponent_action) != 1:
                         best_move = move
-                        minimax(best_move)
+                        minimax(result(best_move))
             return best_move
