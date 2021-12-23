@@ -154,11 +154,11 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    currentactions = actions(board)
+    actions_set = actions(board)
     if player(board) == X:
         max_value = -2
         move = set()
-        for action in currentactions:
+        for action in actions_set:
             current_value = maximum(result(board, action))
             if current_value > max_value:
                 max_value = current_value
@@ -166,7 +166,7 @@ def minimax(board):
     else:
         min_value = 2
         move = set()
-        for action in currentactions:
+        for action in actions_set:
             current_value = minimum(result(board, action))
             if current_value < min_value:
                 min_value = current_value
