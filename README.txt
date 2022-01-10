@@ -7,3 +7,4 @@ ai50/projects/2020/x/tictactoe - Tic-Tac-Toe
 - Problem set 1:
 
 ai50/projects/2020/x/knights - Knights
+ai50/projects/2020/x/minesweeper - Minesweeper
