@@ -144,6 +144,12 @@ class Sentence():
             self.cells.remove(cell)
 
     def inferred_sentence(self, other):
+
+        """
+        Returns new knowledge that can be obtained from the inference
+        between two sentences.
+        """
+
         new_sentence = Sentence(set(), 0)
         if self.cells.issubset(other.cells):
             new_sentence.cells = other.cells - self.cells
@@ -215,6 +221,9 @@ class MinesweeperAI():
         """
         self.moves_made.add(cell)
         self.mark_safe(cell)
+
+        #Getting neighbours
+
         i, j = cell
         neighbours = set()
         for h in range((i - 1), (i + 1)):
@@ -223,6 +232,8 @@ class MinesweeperAI():
                     neighbour = h, w
                     if neighbour not in self.safes and neighbour not in self.moves_made and neighbour not in self.mines:
                         neighbours.add(neighbour)
+
+        #Adding new knowledge based on the revealed count and neighbours
         new_knowledge = Sentence(cells = neighbours, count = count)
         self.knowledge.append(new_knowledge)
 
