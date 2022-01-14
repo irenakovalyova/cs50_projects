@@ -4,7 +4,6 @@ Tic Tac Toe Player
 
 import math
 import copy
-from types import NoneType
 
 X = "X"
 O = "O"
