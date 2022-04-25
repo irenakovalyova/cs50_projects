@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{ article.title|title }} | Articles | Ukraine 101</title>
+{% endblock %}
+
+{% block additional-style %}
+<link rel="stylesheet" href="/static/css/article-page.css" />
+    {% endblock %}
+
+{% block top %}<div class="article-page-top-container" style="background-image: linear-gradient(to top, transparent, {{ object.category.get_theme_color }} 100%),url('{{ object.image.url }}');">{% endblock %}
+
+{% block content %}
+
+
+    <div class="article-page-hero">
+            <h1 class="article-page-text09 heading">
+              {{ object.title }}
+            </h1>
+          </div>
+          <div class="article-page-container3">
+            <button class="article-page-button button" style="background-color: {{ object.category.color }}; color: white" onclick="location.href='/articles/?category={{ object.category.name|title }}';">{{ object.category }}</button>
+          </div>
+        </div>
+        <div id="main-section" class="article-page-main">
+          <span class="article-page-text10">by {{ object.author.first_name }} {{ object.author.last_name }}</span>
+          <div class="article-page-intro-container">
+            <h1 class="article-page-text11">
+              {{ object.summary }}
+            </h1>
+            <div
+              class="
+                recommended-book-card-container
+                recommended-book-card-root-class-name
+              "
+            onclick="location.href='/books/{{ recommended_book.slug }}';">
+              <img
+                alt="{{ recommended_book.title }}"
+                src="{{ recommended_book.image.url }}"
+                class="recommended-book-card-image"
+              />
+              <div class="recommended-book-card-container1">
+                <span class="recommended-book-card-text">
+                  <span>Recommended: {{ recommended_book.title }}</span>
+                </span>
+                <span class="recommended-book-card-text1">
+                  <span>{{ recommended_book.author }}</span>
+                </span>
+
+              </div>
+            </div>
+          </div>
+          <div class="article-page-main-text-container">
+            <span class="article-page-text12">
+{{ object.text|safe }}
+            </span>
+          </div>
+          <div class="article-page-comments-heading-container">
+            <h1 class="article-page-text41">{{ object.get_comments|length }} comments</h1>
+          </div>
+            {% if user.is_authenticated %}
+          <form id="comment-form" method="POST" class="article-page-form">{% csrf_token %}
+    {{ form.as_p }}
+              <div class="solid-button-container">
+                <button type='submit' class="solid-button-button button">
+                  Add comment
+                </button>
+              </div>
+          </form>
+            {% else %}
+            <span class="article-page-text12">To add comments, please <a href="{% url 'login' %}" class="article-text-link" style="color: {{ object.category.color }}">log in</a></span>
+            {% endif %}
+          <div class="article-page-comments-container">
+            {% for comment in object.get_comments %}
+            <div class="comment-card-container comment-card-root-class-name">
+              <div class="comment-card-container1">
+                <span class="comment-card-text">
+                  <span>{{ comment.user.first_name}} {{ comment.user.last_name }}</span>
+                </span>
+                <span class="comment-card-text1">
+                  <span>{{ comment.date_created }}</span>
+                </span>
+                <span class="comment-card-text2">
+                  <span>
+                    {{ comment.comment_text }}
+                  </span>
+                </span>
+              </div>
+            </div>
+            {% endfor %}
+
+
+          </div>
+        {% if similar_articles %}
+          <div class="article-page-cards-container">
+              <div class="article-page-comments-heading-container1">
+              <h1 class="article-page-text42">Similar Articles</h1>
+            </div>
+            {% for article in similar_articles %}
+            <div class="place-card-container">
+              <img
+                alt="image"
+                src="{{ article.image.url }}"
+                class="place-card-image"
+              />
+              <div class="place-card-container1">
+                <span class="place-card-text"><span>{{ article.title }}</span></span>
+                <span class="place-card-text1">
+                  <span>
+                    {{ article.summary }}
+                  </span>
+                </span>
+                <div class="outline-button-container">
+                    <a href="{{ article.get_absolute_url }}">
+                  <button class="outline-button-button button">
+                    <span>Learn more</span>
+                  </button>
+                    </a>
+                </div>
+              </div>
+            </div>
+              </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+{% endblock %}

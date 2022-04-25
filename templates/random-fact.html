@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Random Fact About Ukraine | Ukraine 101</title>
+{% endblock %}
+
+{% block additional-style %}
+<link rel="stylesheet" href="/static/css/randomfact.css" />
+    {% endblock %}
+
+{% block top %}<div class="landing-page-top-container" style="background-image: url('/media/img/random-fact-image.jpeg');">{% endblock %}
+
+{% block content %}
+
+{% if fact %}
+
+    <div class="randomfact-hero">
+            <h2 class="randomfact-heading heading">{{ fact.summary }}</h2>
+          </div>
+        </div>
+        <div id="main-section" class="randomfact-main">
+          <div class="randomfact-cards-container">
+            <span class="randomfact-text09">{{ fact.details }}</span>
+          </div>
+          <div class="solid-button-container">
+            <button onClick="window.location.reload();" class="solid-button-button button">
+              <span>Generate new fact</span>
+            </button>
+          </div>
+        </div>
+
+{% else %} <h4>Nothing to show</h4>
+
+<div class="randomfact-hero">
+            <h2 class="randomfact-heading heading">Nothing to show</h2>
+          </div>
+        </div>
+        <div id="main-section" class="randomfact-main">
+          <div class="randomfact-cards-container">
+            <span class="randomfact-text09">Interesting facts are coming soon</span>
+          </div>
+          <div class="solid-button-container">
+            <button class="solid-button-button button">
+              <span>Go to homepage</span>
+            </button>
+          </div>
+        </div>
+
+{% endif %}
+</center>
+{% endblock %}

@@ -1,0 +1,554 @@
+.solid-button-container {
+  display: flex;
+  position: relative;
+}
+.solid-button-button {
+  color: var(--dl-color-gray-white);
+  border: none;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-doubleunit);
+  border-radius: 50px;
+  padding-right: var(--dl-space-space-doubleunit);
+  padding-bottom: var(--dl-space-space-halfunit);
+  background-color: var(--dl-color-primary-100);
+}
+.solid-button-root-class-name {
+  margin-top: var(--dl-space-space-unit);
+}
+.solid-button-root-class-name1 {
+  margin-top: var(--dl-space-space-unit);
+}
+.solid-button-root-class-name2 {
+  margin-top: var(--dl-space-space-unit);
+}
+.solid-button-root-class-name3 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.solid-button-root-class-name4 {
+  margin-top: var(--dl-space-space-unit);
+}
+.solid-button-root-class-name6 {
+  align-self: center;
+}
+
+.profile-avatar-edit-container {
+  width: 356px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.profile-avatar-edit-container1 {
+  flex: 0 0 auto;
+  width: 356px;
+  height: 400px;
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-start;
+  background-size: cover;
+  justify-content: center;
+  background-image: url('https://us.123rf.com/450wm/tanyadanuta/tanyadanuta2006/tanyadanuta200600030/150966858-default-avatar-profile-icon-gray-photo-placeholder-hand-drawn-modern-man-avatar-profile-icon-or-port.jpg?ver=6');
+}
+
+
+@media(max-width: 767px) {
+  .profile-avatar-edit-container {
+    width: 200px;
+  }
+}
+@media(max-width: 479px) {
+  .profile-avatar-edit-container {
+    width: 300px;
+  }
+}
+
+.user-profile-page-edit-profile-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.user-profile-page-edit-profile-top-container {
+  width: 100%;
+  height: 104px;
+  display: flex;
+  z-index: 100;
+  position: relative;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  background-image: linear-gradient(to top, transparent, #B8E1F6 100%),url('https://s26162.pcdn.co/wp-content/uploads/2022/03/Ukraine_Flag.png');
+  background-position: 0% 40%;
+}
+.user-profile-page-edit-profile-container01 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.user-profile-page-edit-profile-image {
+  width: var(--dl-size-size-tripleunit);
+  object-fit: cover;
+  padding-top: var(--dl-space-space-halfunit);
+  border-radius: var(--dl-radius-radius-radius4);
+}
+.user-profile-page-edit-profile-container02 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.user-profile-page-edit-profile-navbar {
+  width: 1111px;
+  display: flex;
+  padding: var(--dl-space-space-doubleunit);
+  max-width: 1000px;
+  align-items: center;
+  padding-right: 2em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-right-side {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-links-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-text {
+  margin-right: var(--dl-space-space-doubleunit);
+}
+.user-profile-page-edit-profile-text01 {
+  margin-right: var(--dl-space-space-doubleunit);
+}
+.user-profile-page-edit-profile-text02 {
+  margin-right: var(--dl-space-space-doubleunit);
+}
+.user-profile-page-edit-profile-text03 {
+  margin-right: var(--dl-space-space-doubleunit);
+}
+.user-profile-page-edit-profile-burger-menu {
+  display: none;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-burger-menu {
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-mobile-menu {
+  top: 0px;
+  flex: 0 0 auto;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  padding: var(--dl-space-space-doubleunit);
+  z-index: 100;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.user-profile-page-edit-profile-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.user-profile-page-edit-profile-top {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-doubleunit);
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-close-menu {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.user-profile-page-edit-profile-icon03 {
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-right-side1 {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-links-container1 {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-text04 {
+  margin-bottom: 8px;
+}
+.user-profile-page-edit-profile-text05 {
+  margin-bottom: 8px;
+}
+.user-profile-page-edit-profile-text06 {
+  margin-bottom: 8px;
+}
+.user-profile-page-edit-profile-follow-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-text08 {
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+.user-profile-page-edit-profile-icons-container {
+  width: 100px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-link {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon05 {
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-link01 {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon07 {
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-link02 {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon09 {
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: var(--dl-space-space-quadruple);
+  padding-left: var(--dl-space-space-doubleunit);
+  padding-right: var(--dl-space-space-doubleunit);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-quadruple);
+  justify-content: flex-start;
+}
+.user-profile-page-edit-profile-intro-container {
+  width: 1078px;
+  height: 474px;
+  display: flex;
+  grid-gap: var(--dl-space-space-doubleunit);
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin-top: var(--dl-space-space-doubleunit);
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-doubleunit);
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-container03 {
+  width: 538px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.user-profile-page-edit-profile-logo2 {
+  width: 100%;
+  padding-left: var(--dl-space-space-halfunit);
+}
+.user-profile-page-edit-profile-form {
+  width: 100%;
+  height: 348px;
+  margin-top: var(--dl-space-space-quadruple);
+}
+.user-profile-page-edit-profile-container04 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
+.user-profile-page-edit-profile-text09 {
+  font-size: 1.7em;
+  width: 150px
+}
+.user-profile-page-edit-profile-textinput {
+  width: 65%;
+  margin-left: var(--dl-space-space-unit);
+}
+.user-profile-page-edit-profile-container05 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
+.user-profile-page-edit-profile-text10 {
+  font-size: 1.7em;
+}
+.user-profile-page-edit-profile-textinput1 {
+  width: 65%;
+  margin-left: var(--dl-space-space-unit);
+}
+.user-profile-page-edit-profile-container06 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
+.user-profile-page-edit-profile-text11 {
+  font-size: 1.7em;
+}
+.user-profile-page-edit-profile-textinput2 {
+  width: 65%;
+  margin-left: 5.5em;
+}
+.user-profile-page-edit-profile-container07 {
+  width: 402px;
+  height: 430px;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  border-color: #928d8d;
+  border-width: 1px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.user-profile-page-edit-profile-container08 {
+  width: 50%;
+  height: 55px;
+  display: flex;
+  align-self: center;
+  align-items: flex-start;
+  justify-content: center;
+}
+.user-profile-page-edit-profile-logo3 {
+  width: 100%;
+  text-align: center;
+  padding-left: var(--dl-space-space-unit);
+}
+.user-profile-page-edit-profile-main-text-container {
+  width: 100%;
+  display: flex;
+  grid-gap: var(--dl-space-space-doubleunit);
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin-top: var(--dl-space-space-doubleunit);
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-doubleunit);
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-form1 {
+  width: 100%;
+  height: 100px;
+}
+.user-profile-page-edit-profile-textarea {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+.user-profile-page-edit-profile-container09 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.user-profile-page-edit-profile-button {
+  color: #2F4858;
+  border: none;
+  align-self: center;
+  text-align: center;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-doubleunit);
+  border-radius: 50px;
+  padding-right: var(--dl-space-space-doubleunit);
+  padding-bottom: var(--dl-space-space-halfunit);
+  background-color: #ffd600;
+}
+.user-profile-page-edit-profile-button1 {
+  color: #f9fafb;
+  border: none;
+  align-self: center;
+  margin-top: 0px;
+  margin-left: var(--dl-space-space-unit);
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-doubleunit);
+  border-radius: 50px;
+  padding-right: var(--dl-space-space-doubleunit);
+  padding-bottom: var(--dl-space-space-halfunit);
+  background-color: #3655bb;
+}
+.user-profile-page-edit-profile-footer {
+  color: var(--dl-color-gray-white);
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-tripleunit);
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #3655bb;
+}
+.user-profile-page-edit-profile-menu {
+  width: 100%;
+  display: flex;
+  max-width: 1000px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-links-container2 {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-container10 {
+  width: 454px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.user-profile-page-edit-profile-link03 {
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.user-profile-page-edit-profile-link04 {
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.user-profile-page-edit-profile-link05 {
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.user-profile-page-edit-profile-link06 {
+  text-decoration: none;
+}
+.user-profile-page-edit-profile-follow-container1 {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-text14 {
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+.user-profile-page-edit-profile-icons-container1 {
+  width: 100px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-profile-page-edit-profile-link07 {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon11 {
+  fill: var(--dl-color-gray-white);
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-link08 {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon13 {
+  fill: var(--dl-color-gray-white);
+  width: 24px;
+  height: 24px;
+}
+.user-profile-page-edit-profile-link09 {
+  display: contents;
+}
+.user-profile-page-edit-profile-icon15 {
+  fill: var(--dl-color-gray-white);
+  width: 24px;
+  height: 24px;
+}
+@media(max-width: 991px) {
+  .user-profile-page-edit-profile-intro-container {
+    justify-content: center;
+  }
+  .user-profile-page-edit-profile-main-text-container {
+    justify-content: center;
+  }
+}
+@media(max-width: 767px) {
+  .user-profile-page-edit-profile-right-side {
+    display: none;
+  }
+  .user-profile-page-edit-profile-burger-menu {
+    display: flex;
+  }
+  .user-profile-page-edit-profile-main {
+    padding-left: var(--dl-space-space-unit);
+    padding-right: var(--dl-space-space-unit);
+  }
+  .user-profile-page-edit-profile-menu {
+    flex-direction: column;
+  }
+  .user-profile-page-edit-profile-links-container2 {
+    margin-top: var(--dl-space-space-tripleunit);
+    margin-bottom: var(--dl-space-space-tripleunit);
+    justify-content: space-between;
+  }
+  .user-profile-page-edit-profile-container10 {
+    margin-left: 0px;
+  }
+}
+@media(max-width: 479px) {
+  .user-profile-page-edit-profile-links-container2 {
+    margin-top: var(--dl-space-space-doubleunit);
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .user-profile-page-edit-profile-link03 {
+    margin-bottom: var(--dl-space-space-halfunit);
+  }
+  .user-profile-page-edit-profile-link04 {
+    margin-bottom: var(--dl-space-space-halfunit);
+  }
+  .user-profile-page-edit-profile-link05 {
+    margin-bottom: var(--dl-space-space-halfunit);
+  }
+  .user-profile-page-edit-profile-link06 {
+    margin-bottom: var(--dl-space-space-halfunit);
+  }
+  .user-profile-page-edit-profile-follow-container1 {
+    margin-left: 0px;
+  }
+}
+
+.avatar-upload {
+  width: 200px;
+}

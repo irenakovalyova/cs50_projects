@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{ book.title|title }} | Books | Ukraine 101</title>
+{% endblock %}
+
+{% block top %}<div class="landing-page-top-container"
+                    {% if book.category %}
+                    style="background-image: none; background-color: {{ book.category.get_theme_color }}">
+    {% else %}
+                    style="background-image: none; background-color: #b8e0f6">{% endif %}{% endblock %}
+
+{% block content %}
+<div class="landing-page-hero-book">
+            <div class="landing-page-content-container">
+              <h1 class="heading landing-page-text09">{{ book.title|title }}</h1>
+              <span class="landing-page-text10">
+                <span>
+                    <b>{{ book.author }}</b>
+                </span>
+              </span>
+                <span class="landing-page-text10">
+                <span>
+                    {{ book.summary }}
+                </span>
+              </span>
+                {% if book.buy_url %}
+                <a href="{{ book.buy_url }}" class="landing-page-link">
+              <div class="solid-button-container">
+                <button class="solid-button-button button">
+                  <span>Where to buy</span>
+                </button>
+              </div>
+                </a>
+                {% endif %}
+            </div>
+            <div class="landing-page-content-container1">
+              <img
+                alt="image"
+                src="{{ book.image.url }}"
+                class="landing-page-image1"
+              />
+            </div>
+          </div>
+        </div>
+        <div id="main-section" class="landing-page-main">
+            <div class="landing-page-hero-book">
+            {% if book.quote %}<blockquote class="blockquote"><p>"{{ book.quote }}" <span style="font-size: 18px;">- {{ book.author }}</span></p></blockquote>{% endif %}
+          </div>
+                <div class="landing-page-hero-book">
+            <span class="landing-page-text13">
+              {{ book.description }}
+            </span>
+          </div>
+          <div class="landing-page-where-to-buy">
+              <div class="solid-button-container">
+
+            </div>
+            <div class="solid-button-container">
+                <span class="landing-page-text-category" style="color: {{ book.category.color }}; margin-right: 3rem;">Category: <a href="/books/?category={{ book.category }}">{{ book.category }}</a></span>
+
+                        <div class="solid-button-container">
+                            {% if user.is_authenticated %}
+                            {% if is_favourite == False %}
+                          <button class="solid-button-button button" id="fav-button" value="{{ book.id }}">
+                            <span>Add to reading list</span>
+                          </button>
+                            {% else %}
+                            <button class="fav-button-added button" id="fav-button" value="{{ book.id }}">
+                            <span>In the reading list</span>
+                          </button>
+                            {% endif %}
+                            {% else %}
+                            <a href="/login">
+                            <button class="solid-button-button button" id="fav-button" value="{{ book.id }}">
+                            <span>Add to reading list</span>
+                          </button>
+                                </a>
+                            {% endif %}
+
+                        </div>
+
+
+          </div>
+        </div>
+
+<div id="recommended" class="landing-page-recommended-books" style="margin-top: 2rem">
+    {% if recommended %}
+    <center><h1 class="heading-recommended">
+            Similar Books
+    </h1></center>
+          <div class="landing-page-cards-container">
+              {% for r in recommended %}
+            <div class="place-card-container">
+              <img
+                alt="{{ book.title }}"
+                src="{{ r.image.url }}"
+                class="place-card-image"
+              />
+              <div class="place-card-container1">
+                <span class="place-card-text"><span>{{ r.title|title }}</span></span>
+                <span class="place-card-text1">
+                  <span>
+                    {{ r.summary }}
+                  </span>
+                </span>
+                <div class="outline-button-container">
+                  <button class="outline-button-button button" onclick="location.href='{% url 'book-details' r.slug %}';">
+                    <span>Learn more</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+
+
+{% else %} <h4></h4>
+{% endif %}
+</div>
+            <script>
+
+document.getElementById("fav-button").addEventListener('click', function () {
+  changeClass();
+});
+
+async function getResponse() {
+    let url = 'http://127.0.0.1:8000/fav/{{ book.id }}/';
+    try {
+        const body = new FormData();
+        body.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+        let res = await fetch(url, {
+          method: "post",
+          body,
+        });
+        return await res.json();
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function changeClass() {
+    let status = await getResponse();
+    if (status["result"] == 'added') {
+            document.getElementById("fav-button").className = 'fav-button-added button';
+            document.getElementById("fav-button").innerHTML = 'In the reading list';
+        }
+    else if (status["result"] == 'removed') {
+            document.getElementById("fav-button").className = 'solid-button-button button';
+            document.getElementById("fav-button").innerHTML = 'Add to reading list';
+        }
+      }
+
+</script>
+
+{% endblock %}

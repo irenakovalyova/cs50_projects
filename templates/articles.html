@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Articles About Ukraine | Ukraine 101</title>
+{% endblock %}
+
+{% block additional-style %}
+<link rel="stylesheet" href="/static/css/articlespage.css" />
+    {% endblock %}
+
+{% block top %}<div class="landing-page-top-container" style="background-image: url('/media/img/Ukraine-Articles.jpeg');">{% endblock %}
+
+{% block content %}
+
+<div class="articlespage-hero">
+            <div class="articlespage-content-container">
+              <h1 class="heading articlespage-text09">
+                Articles About Ukraine
+              </h1>
+              <span class="articlespage-text10">
+                <span style="background-color: #FFD600">
+                  Each article has been property is hand-picked so that
+                  everybody could learn about Ukraine, its culture and the
+                  history of its struggle
+                </span>
+                <span>.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div id="main-section" class="articlespage-main">
+          <h1>Discover Ukraine Through the Eyes of Ukrainians</h1>
+          <span class="articlespage-text14">
+            {% if category %}
+            Category: {{ category }}
+            {% else %}
+            Recommended articles that will tell you the truth
+            {% endif %}
+          </span>
+          <div class="articlespage-container3">
+            {% for category in categories %}
+            <div
+              class="category-button-container category-button-root-class-name"
+            >
+              <button onclick="location.href='/articles/?category={{ category.name }}';" style="border-color: {{ category.color }}; color: {{ category.color }};" class="category-button-button button">
+                <span>{{ category.name }}</span>
+              </button>
+            </div>
+            {% endfor %}
+          </div>
+          {% if object_list %}
+          <div class="articlespage-blog">
+            {% for instance in object_list %}
+            <div
+              class="
+                blog-post-card2-blog-post-card blog-post-card2-root-class-name1
+              "
+            onclick="location.href='{{ instance.get_absolute_url }}';">
+              {% if instance.featured %}
+              <div class="overlay-container">
+  <img
+                alt="image"
+                src="{{ instance.image.url }}"
+                image_src="{{ instance.image.url }}&amp;ixlib=rb-1.2.1&amp;h=1000"
+                class="blog-post-card2-image"
+              />
+                <div class="overlay-icon" title="User Profile">
+    <i class="fa fa-star"></i>
+  </div>
+  
+</div>
+              {% else %}
+              <img
+                alt="image"
+                src="{{ instance.image.url }}"
+                image_src="{{ instance.image.url }}&amp;ixlib=rb-1.2.1&amp;h=1000"
+                class="blog-post-card2-image"
+              />
+              {% endif %}
+
+
+              <div class="blog-post-card2-container" >
+                <div class="blog-post-card2-container1">
+                  <span class="blog-post-card2-text">
+                    <span>{{ instance.category.name|upper}}</span>
+                  </span>
+                </div>
+                <h1 class="blog-post-card2-text1">
+                  <span>{{ instance.title }}</span>
+                </h1>
+                {% if instance.featured %}
+                <div class="blog-post-card2-container1">
+                  <span class="blog-post-card2-text">
+                    <span style="color: #e8b923;">FEATURED</span>
+                  </span>
+                </div>
+                {% endif %}
+                <span class="blog-post-card2-text2">
+                  <span>
+                    {{ instance.summary }}
+                  </span>
+                </span>
+                <div class="blog-post-card2-container2">
+                  <div class="blog-post-card2-profile">
+                    <span class="blog-post-card2-text3">
+                      <span>{{ instance.date_created }}</span>
+                    </span>
+                  </div>
+                  <a href='{{ instance.get_absolute_url }}'><span class="blog-post-card2-text4">Read More -&gt;</span></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+          {% else %} <h4>Nothing to show</h4>
+        </div>
+{% endif %}
+
+{% endblock %}

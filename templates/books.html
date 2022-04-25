@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Books About Ukraine | Ukraine 101</title>
+{% endblock %}
+
+{% block top %}<div class="landing-page-top-container" style="background-image: url('/media/img/book-reding.jpeg');">{% endblock %}
+
+{% block content %}
+<div class="landing-page-hero">
+            <div class="landing-page-content-container">
+              <h1 class="heading landing-page-text09">Books About Ukraine</h1>
+              <span class="landing-page-text10">
+                <span>
+                  Each book has been property is hand-picked so that everybody
+                  could learn about Ukraine, its culture and the history of its
+                  struggle
+                </span>
+                <span>.</span>
+              </span>
+
+            </div>
+          </div>
+        </div>
+        <div id="main-section" class="landing-page-main">
+          <h1>Read these books to discover Ukraine</h1>
+          <span class="landing-page-text14">
+            {% if category %}
+            Category: {{ category }}
+            {% else %}
+            Recommended items that will tell you the truth
+            {% endif %}
+          </span>
+            {% if books %}
+          <div class="landing-page-cards-container">
+              {% for book in books %}
+            <div class="place-card-container">
+{% if book.featured %}
+              <div class="overlay-container">
+  <img
+                alt="{{ book.title }}"
+                src="{{ book.image.url }}"
+                class="place-card-image-featured"
+              />
+                <div class="overlay-icon" title="User Profile">
+    <i class="fa fa-star"></i>
+  </div>
+
+</div>
+
+              {% else %}
+              <img
+                alt="{{ book.title }}"
+                src="{{ book.image.url }}"
+                class="place-card-image"
+              />
+              {% endif %}
+              <div class="place-card-container1">
+                <span class="place-card-text"><span>{{ book.title|title }}</span></span>
+                <span class="place-card-text1">
+                  <span>
+                    by {{ book.author }}
+                  </span>
+                </span>
+                <div class="outline-button-container">
+                  <button class="outline-button-button button" onclick="location.href='/books/{{ book.slug }}';">
+                    <span>Learn more</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+
+
+{% else %} <h4>Nothing to show</h4>
+{% endif %}
+
+{% endblock %}
